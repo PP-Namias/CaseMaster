@@ -26,6 +26,33 @@ const FromEmail = () => {
       {/** Header */}
       <HeaderSection title="Logbook - From email" />
 
+      {/** Filter Buttons */}
+      <div className="flex space-x-4">
+        {/* Status Dropdown */}
+        <div className="relative">
+          <select className="bg-white text-[#0F2043] appearance-none border border-[#0F2043] rounded-md px-4 py-2 shadow-sm hover:bg-[#0F2043] hover:text-white focus:bg-[#0F2043] focus:text-white cursor-pointer">
+            <option>Status</option>
+            {/* Add more options here */}
+          </select>
+        </div>
+
+        {/* Document Type Dropdown */}
+        <div className="relative">
+          <select className="bg-white text-[#0F2043] appearan ce-none border border-[#0F2043] rounded-md px-4 py-2 shadow-sm hover:bg-[#0F2043] hover:text-white focus:bg-[#0F2043] focus:text-white cursor-pointer">
+            <option>Document Type</option>
+            {/* Add more options here */}
+          </select>
+        </div>
+
+        {/* Date Added Dropdown */}
+        <div className="relative">
+          <select className="bg-white text-[#0F2043] appearance-none border border-[#0F2043] rounded-md px-4 py-2 shadow-sm hover:bg-[#0F2043] hover:text-white focus:bg-[#0F2043] focus:text-white cursor-pointer">
+            <option>Date Added</option>
+            {/* Add more options here */}
+          </select>
+        </div>
+      </div>
+
       {/** Table and Details */}
       <div className="flex flex-col md:flex-row">
         <div className={`flex-1 ${selectedRow ? "md:w-2/3" : "w-full"}`}>
