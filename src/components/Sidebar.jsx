@@ -32,6 +32,7 @@ import ArchiveAttachments from "../pages/Attachments/Archive";
 import SharedWithMe from "../pages/Attachments/SharedWithMe";
 import StarredAttachments from "../pages/Attachments/Starred";
 import Settings from "../pages/Settings/Settings";
+import Badge from "@mui/material/Badge";
 import "./Sidebar.css";
 
 const Sidebar = () => {
@@ -45,40 +46,93 @@ const Sidebar = () => {
   const location = useLocation();
 
   const Menus = [
-    { title: "Dashboard", icon: <SpaceDashboardOutlinedIcon />, path: "/" },
+    {
+      title: "Dashboard",
+      icon: (
+        <Badge badgeContent={4} color="error">
+          <SpaceDashboardOutlinedIcon />
+        </Badge>
+      ),
+      path: "/",
+    },
     {
       title: "Logbook",
-      icon: <AutoStoriesOutlinedIcon />,
+      icon: (
+        <Badge
+          badgeContent={
+            2 /* Calculate the sum of dropdown badgeContent if needed */
+          }
+          color="primary"
+        >
+          <AutoStoriesOutlinedIcon />
+        </Badge>
+      ),
       path: "/from-email" || "/manual-input",
       element: <FromEmail /> || <ManualInput />,
       hasDropdown: true,
       dropdownKey: "logbook",
       dropdownItems: [
-        { title: "From Email", path: "/from-email", element: <FromEmail /> },
+        {
+          title: "From Email",
+          path: "/from-email",
+          element: <FromEmail />,
+          badgeContent: 1, // Individual badge for this dropdown
+        },
         {
           title: "Manual Input",
           path: "/manual-input",
           element: <ManualInput />,
+          badgeContent: 1, // Individual badge for this dropdown
         },
       ],
     },
     {
       title: "Mails",
-      icon: <EmailOutlinedIcon />,
+      icon: (
+        <Badge
+          badgeContent={99 /* Dynamically sum counts for dropdown items */}
+          color="secondary"
+          max={99}
+        >
+          <EmailOutlinedIcon />
+        </Badge>
+      ),
       path: "/inbox",
       element: <Inbox />,
       hasDropdown: true,
       dropdownKey: "mails",
       dropdownItems: [
-        { title: "Inbox", path: "/inbox", element: <Inbox /> },
-        { title: "Starred", path: "/starred", element: <Starred /> },
-        { title: "Sent", path: "/sent", element: <Sent /> },
-        { title: "Archive", path: "/archive", element: <Archive /> },
+        {
+          title: "Inbox",
+          path: "/inbox",
+          element: <Inbox />,
+          badgeContent: 30,
+        },
+        {
+          title: "Starred",
+          path: "/starred",
+          element: <Starred />,
+          badgeContent: 20,
+        },
+        { title: "Sent", path: "/sent", element: <Sent />, badgeContent: 15 },
+        {
+          title: "Archive",
+          path: "/archive",
+          element: <Archive />,
+          badgeContent: 5,
+        },
       ],
     },
     {
       title: "Attachments",
-      icon: <AttachmentOutlinedIcon />,
+      icon: (
+        <Badge
+          badgeContent={10 /* Dynamically calculate count for dropdown items */}
+          color="success"
+        >
+          <AttachmentOutlinedIcon />
+        </Badge>
+      ),
       path: "/all-attachments",
       element: <AllAttachments />,
       hasDropdown: true,
@@ -88,43 +142,55 @@ const Sidebar = () => {
           title: "All Attachments",
           path: "/all-attachments",
           element: <AllAttachments />,
+          badgeContent: 3,
         },
         {
           title: "My Attachments",
           path: "/my-attachments",
           element: <MyAttachments />,
+          badgeContent: 2,
         },
         {
           title: "Shared With Me",
           path: "/shared-with-me",
           element: <SharedWithMe />,
+          badgeContent: 3,
         },
         {
           title: "Starred",
           path: "/starred-attachments",
           element: <StarredAttachments />,
+          badgeContent: 1,
         },
         {
           title: "Archive",
           path: "/archive-attachments",
           element: <ArchiveAttachments />,
+          badgeContent: 1,
         },
       ],
     },
     {
       title: "Case Tracker",
-      icon: <TableChartOutlinedIcon />,
+      icon: (
+        <Badge badgeContent={7} color="error">
+          <TableChartOutlinedIcon />
+        </Badge>
+      ),
       path: "/case-tracker",
       element: <CaseTracker />,
     },
     {
       title: "Task",
-      icon: <AssignmentOutlinedIcon />,
+      icon: (
+        <Badge badgeContent={3} color="warning">
+          <AssignmentOutlinedIcon />
+        </Badge>
+      ),
       path: "/task",
       element: <Task />,
     },
   ];
-
   const [activeMenu, setActiveMenu] = useState(null);
   const handleNavigation = (
     path,

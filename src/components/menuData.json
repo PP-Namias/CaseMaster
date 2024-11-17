@@ -1,20 +1,19 @@
 {
-    "newMenuItems": [
-      { "label": "New Folder", "icon": "CircleIcon", "iconColor": "#2E49D5" },
-      { "type": "divider" },
-      { "label": "Upload File", "icon": "CircleIcon", "iconColor": "#FFBD44" },
-      { "label": "Upload Folder", "icon": "CircleIcon", "iconColor": "#FFBD44" }
-    ],
-    "typeMenuItems": [
-      { "label": "Type A" },
-      { "label": "Type B" },
-      { "type": "divider" },
-      { "label": "Type C" }
-    ],
-    "dateAddedMenuItems": [
-      { "label": "Today" },
-      { "label": "This Week" },
-      { "label": "This Month" }
-    ]
-  }
-  
+  "newMenuItems": [
+    { "label": "New Folder", "icon": "CircleIcon", "iconColor": "#2E49D5" },
+    { "type": "divider" },
+    { "label": "Upload File", "icon": "CircleIcon", "iconColor": "#FFBD44" },
+    { "label": "Upload Folder", "icon": "CircleIcon", "iconColor": "#FFBD44" }
+  ],
+  "typeMenuItems": [
+    { "label": "Type A" },
+    { "label": "Type B" },
+    { "type": "divider" },
+    { "label": "Type C" }
+  ],
+  "dateAddedMenuItems": [
+    { "label": "Today" },
+    { "label": "This Week" },
+    { "label": "This Month" }
+  ]
+}

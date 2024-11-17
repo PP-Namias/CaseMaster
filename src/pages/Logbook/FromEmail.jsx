@@ -2,24 +2,10 @@ import React, { useState, useEffect } from "react";
 import Details from "../../components/Details";
 import tableData from "./TableData.json";
 import TableComponent from "../../components/TableComponent";
+import HeaderSection from "../../components/HeaderSection";
 
 const FromEmail = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedRow, setSelectedRow] = useState(null);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentDate(new Date());
-    }, 1000 * 60 * 60 * 24);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  const formattedDate = currentDate.toLocaleDateString("en-US", {
-    weekday: "long",
-    month: "long",
-    day: "numeric",
-  });
 
   const { columns, data } = tableData;
 
@@ -31,15 +17,18 @@ const FromEmail = () => {
     setSelectedRow(null);
   };
 
-  return (
-    <div className="p-6 space-y-4 ">
-      <h2 className="text-[#0F2043] font-medium">{formattedDate}</h2>
-      <h1 className="text-[#0F2043] font-semibold text-2xl border-b-2 border-gray-300 pb-4">
-        Logbook - From Email
-      </h1>
+  const handleCloseDetails = () => {
+    setSelectedRow(null);
+  };
 
-      <div className="flex">
-        <div className="flex-1">
+  return (
+    <div className="p-6 space-y-4">
+      {/** Header */}
+      <HeaderSection title="Logbook - From email" />
+
+      {/** Table and Details */}
+      <div className="flex flex-col md:flex-row">
+        <div className={`flex-1 ${selectedRow ? "md:w-2/3" : "w-full"}`}>
           <TableComponent
             columns={columns}
             data={data}
@@ -49,9 +38,9 @@ const FromEmail = () => {
         </div>
 
         {selectedRow && (
-          <div className="flex-1 flex flex-col justify-start">
+          <div className="flex-2 md:w-1/3 mt-4 md:mt-0 md:ml-4">
             {/* Details Component */}
-            <Details row={selectedRow} />
+            <Details row={selectedRow} onClose={handleCloseDetails} />
           </div>
         )}
       </div>
