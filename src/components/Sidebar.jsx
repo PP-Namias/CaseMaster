@@ -9,30 +9,18 @@ import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutl
 import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import { Avatar } from "@mui/material";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
+import { Avatar, Tooltip, Badge } from "@mui/material";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import IconButton from "@mui/material/IconButton";
 import FromEmail from "../pages/Logbook/FromEmail";
 import ManualInput from "../pages/Logbook/ManualInput";
-import Inbox from "../pages/Mails/Inbox";
-import Starred from "../pages/Mails/Starred";
-import Sent from "../pages/Mails/Sent";
-import Archive from "../pages/Mails/Archive";
-import Attachments from "../pages/Attachments/AllAttachments";
-import CaseTracker from "../pages/CaseTracker";
-import Task from "../pages/Task";
+import Mail from "../pages/Mails/Mails";
 import AllAttachments from "../pages/Attachments/AllAttachments";
 import MyAttachments from "../pages/Attachments/MyAttachments";
 import ArchiveAttachments from "../pages/Attachments/Archive";
 import SharedWithMe from "../pages/Attachments/SharedWithMe";
 import StarredAttachments from "../pages/Attachments/Starred";
-import Settings from "../pages/Settings/Settings";
-import Badge from "@mui/material/Badge";
+import CaseTracker from "../pages/CaseTracker";
+import Task from "../pages/Task";
 import "./Sidebar.css";
 
 const Sidebar = () => {
@@ -58,17 +46,11 @@ const Sidebar = () => {
     {
       title: "Logbook",
       icon: (
-        <Badge
-          badgeContent={
-            2 /* Calculate the sum of dropdown badgeContent if needed */
-          }
-          color="primary"
-        >
+        <Badge badgeContent={2} color="primary">
           <AutoStoriesOutlinedIcon />
         </Badge>
       ),
       path: "/from-email" || "/manual-input",
-      element: <FromEmail /> || <ManualInput />,
       hasDropdown: true,
       dropdownKey: "logbook",
       dropdownItems: [
@@ -76,60 +58,30 @@ const Sidebar = () => {
           title: "From Email",
           path: "/from-email",
           element: <FromEmail />,
-          badgeContent: 1, // Individual badge for this dropdown
+          badgeContent: 1,
         },
         {
           title: "Manual Input",
           path: "/manual-input",
           element: <ManualInput />,
-          badgeContent: 1, // Individual badge for this dropdown
+          badgeContent: 1,
         },
       ],
     },
     {
       title: "Mails",
       icon: (
-        <Badge
-          badgeContent={99 /* Dynamically sum counts for dropdown items */}
-          color="secondary"
-          max={99}
-        >
+        <Badge badgeContent={99} color="secondary" max={99}>
           <EmailOutlinedIcon />
         </Badge>
       ),
-      path: "/inbox",
-      element: <Inbox />,
-      hasDropdown: true,
-      dropdownKey: "mails",
-      dropdownItems: [
-        {
-          title: "Inbox",
-          path: "/inbox",
-          element: <Inbox />,
-          badgeContent: 30,
-        },
-        {
-          title: "Starred",
-          path: "/starred",
-          element: <Starred />,
-          badgeContent: 20,
-        },
-        { title: "Sent", path: "/sent", element: <Sent />, badgeContent: 15 },
-        {
-          title: "Archive",
-          path: "/archive",
-          element: <Archive />,
-          badgeContent: 5,
-        },
-      ],
+      path: "/mail",
+      element: <Mail />,
     },
     {
       title: "Attachments",
       icon: (
-        <Badge
-          badgeContent={10 /* Dynamically calculate count for dropdown items */}
-          color="success"
-        >
+        <Badge badgeContent={10} color="success">
           <AttachmentOutlinedIcon />
         </Badge>
       ),
@@ -191,7 +143,9 @@ const Sidebar = () => {
       element: <Task />,
     },
   ];
+
   const [activeMenu, setActiveMenu] = useState(null);
+
   const handleNavigation = (
     path,
     hasDropdown = false,
@@ -241,7 +195,6 @@ const Sidebar = () => {
           />
         </div>
 
-        {/* Logo and Title Section */}
         <div className="flex items-center gap-x-4 mb-6">
           <img
             src="./src/assets/logo.png"
@@ -256,60 +209,60 @@ const Sidebar = () => {
           )}
         </div>
 
-        {/* Menu Items */}
-        <ul className="">
+        <ul>
           {Menus.map((menu, index) => (
             <div key={index}>
-              <li
-                onClick={() =>
-                  handleNavigation(
-                    menu.path,
-                    menu.hasDropdown,
-                    menu.dropdownKey
-                  )
-                }
-                className={`text-white text-sm flex items-center justify-between gap-x-4 py-3 px-5 rounded-md cursor-pointer ${
-                  menu.path === activeMenu
-                    ? "bg-white text-[#0f2043] font-semibold"
-                    : "hover:bg-[#0B1730]"
-                }`}
-              >
-                <div className="flex items-center gap-x-4">
-                  <span
-                    className={`${
-                      menu.path === activeMenu ? "text-[#0f2043]" : "text-white"
-                    }`}
-                  >
-                    {menu.icon}
-                  </span>
-                  <span
-                    className={`${
-                      menu.path === activeMenu ? "text-[#0f2043]" : "text-white"
-                    } ${!open ? "hidden" : "block"} origin-left duration-200`}
-                  >
-                    {menu.title}
-                  </span>
-                </div>
-                {menu.hasDropdown &&
-                  open &&
-                  (dropdownState[menu.dropdownKey] ? (
-                    <ExpandLessIcon
-                      className={`text-white ${
-                        dropdownState[menu.dropdownKey] ? "" : "text-[#0f2043]"
+              <Tooltip title={open ? "" : menu.title} placement="right" arrow>
+                <li
+                  onClick={() =>
+                    handleNavigation(
+                      menu.path,
+                      menu.hasDropdown,
+                      menu.dropdownKey
+                    )
+                  }
+                  className={`text-white text-sm flex items-center justify-between gap-x-4 py-3 px-5 rounded-md cursor-pointer ${
+                    menu.path === activeMenu
+                      ? "bg-white text-[#0f2043] font-semibold"
+                      : "hover:bg-[#0B1730]"
+                  }`}
+                >
+                  <div className="flex items-center gap-x-4">
+                    <span
+                      className={`${
+                        menu.path === activeMenu
+                          ? "text-[#0f2043]"
+                          : "text-white"
                       }`}
-                      onClick={() => handleDropdownToggle(menu.dropdownKey)}
-                    />
-                  ) : (
-                    <ExpandMoreIcon
-                      className={`text-white ${
-                        dropdownState[menu.dropdownKey] ? "" : "text-[#0f2043]"
-                      }`}
-                      onClick={() => handleDropdownToggle(menu.dropdownKey)}
-                    />
-                  ))}
-              </li>
+                    >
+                      {menu.icon}
+                    </span>
+                    <span
+                      className={`${
+                        menu.path === activeMenu
+                          ? "text-[#0f2043]"
+                          : "text-white"
+                      } ${!open ? "hidden" : "block"} origin-left duration-200`}
+                    >
+                      {menu.title}
+                    </span>
+                  </div>
+                  {menu.hasDropdown &&
+                    open &&
+                    (dropdownState[menu.dropdownKey] ? (
+                      <ExpandLessIcon
+                        className={`text-white`}
+                        onClick={() => handleDropdownToggle(menu.dropdownKey)}
+                      />
+                    ) : (
+                      <ExpandMoreIcon
+                        className={`text-white`}
+                        onClick={() => handleDropdownToggle(menu.dropdownKey)}
+                      />
+                    ))}
+                </li>
+              </Tooltip>
 
-              {/* Dropdown Items */}
               {menu.hasDropdown && dropdownState[menu.dropdownKey] && open && (
                 <ul className="pt-2 ml-6 space-y-2">
                   {menu.dropdownItems.map((dropdownItem, idx) => (
@@ -330,29 +283,6 @@ const Sidebar = () => {
             </div>
           ))}
         </ul>
-      </div>
-
-      {/* Bottom Section */}
-      <div className="border-t flex p-3 items-center border-gray-500">
-        <Avatar
-          alt="Kopibara Kun"
-          src="/src/assets/profile/kopibara.jpg"
-        ></Avatar>
-        {open && (
-          <div className="ml-3 flex-1">
-            <h4 className="text-white text-sm">Kopibara Kun</h4>
-            <p className="text-[#b3b3b3] text-xs">Branch Staff</p>
-          </div>
-        )}
-        {open && (
-          <IconButton
-            aria-label="Settings"
-            className="ml-3"
-            onClick={() => handleNavigation("/settings")}
-          >
-            <SettingsOutlinedIcon style={{ color: "white" }} />
-          </IconButton>
-        )}
       </div>
     </div>
   );

@@ -4,10 +4,6 @@ import Dashboard from "./pages/Dashboard";
 import FromEmail from "./pages/Logbook/FromEmail";
 import ManualInput from "./pages/Logbook/ManualInput";
 import Mails from "./pages/Mails/Mails";
-import Inbox from "./pages/Mails/Inbox";
-import Starred from "./pages/Mails/Starred";
-import Sent from "./pages/Mails/Sent";
-import Archive from "./pages/Mails/Archive";
 import CaseTracker from "./pages/CaseTracker";
 import Task from "./pages/Task";
 import AllAttachments from "./pages/Attachments/AllAttachments";
@@ -16,7 +12,6 @@ import ArchiveAttachments from "./pages/Attachments/Archive";
 import SharedWithMe from "./pages/Attachments/SharedWithMe";
 import StarredAttachments from "./pages/Attachments/Starred";
 import Settings from "./pages/Settings/Settings";
-import tableData from "./pages/Logbook/TableData.json";
 
 import "./App.css";
 
@@ -34,10 +29,6 @@ const App = () => {
             <Route path="/from-email" element={<FromEmail />} />
             <Route path="/manual-input" element={<ManualInput />} />
             <Route path="/mails" element={<Mails />} />
-            <Route path="/inbox" element={<Inbox />} />
-            <Route path="/starred" element={<Starred />} />
-            <Route path="/sent" element={<Sent />} />
-            <Route path="/archive" element={<Archive />} />
             <Route path="/all-attachments" element={<AllAttachments />} />
             <Route path="/my-attachments" element={<MyAttachments />} />
             <Route
