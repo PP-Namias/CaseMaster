@@ -1,0 +1,139 @@
+/* Remove if fonts are not used */
+@import '~@fontsource/inter/100.css';
+@import '~@fontsource/inter/200.css';
+@import '~@fontsource/inter/300.css';
+@import '~@fontsource/inter/400.css';
+@import '~@fontsource/inter/500.css';
+@import '~@fontsource/inter/600.css';
+@import '~@fontsource/inter/700.css';
+@import '~@fontsource/inter/800.css';
+@import '~@fontsource/inter/900.css';
+@import '~@fontsource/roboto-mono/300.css';
+@import '~@fontsource/roboto-mono/400.css';
+@import '~@fontsource/plus-jakarta-sans/600.css';
+@import '~@fontsource/plus-jakarta-sans/700.css';
+
+/* Remove if mapbox is not used */
+@import '~mapbox-gl/dist/mapbox-gl.css';
+
+/* Remove is recharts is not used */
+.recharts-cartesian-axis-tick-value {
+  color: var(--mui-palette-text-secondary);
+  font-size: var(--fontSize-xs);
+}
+
+.recharts-cartesian-grid line {
+  stroke: var(--mui-palette-divider);
+}
+
+.recharts-pie path:focus {
+  outline: none;
+}
+
+/* Remove if react-simple-maps is not used */
+.rsm-geographies path:focus {
+  outline: none;
+}
+
+/* Remove if fullcalendar is not used */
+.fc {
+  --fc-bg-event-opacity: 1;
+  --fc-border-color: var(--mui-palette-divider);
+  --fc-daygrid-event-dot-width: 10px;
+  --fc-event-bg-color: var(--mui-palette-background-paper);
+  --fc-event-border-color: var(--mui-palette-divider);
+  --fc-event-text-color: var(--mui-palette-primary-contrastTex);
+  --fc-list-event-hover-bg-color: var(--mui-palette-background-default);
+  --fc-neutral-bg-color: var(--mui-palette-background-default);
+  --fc-page-bg-color: var(--mui-palette-background-default);
+  --fc-today-bg-color: var(--mui-palette-background-level1);
+  color: var(--mui-palette-text-primary);
+}
+
+.fc .fc-license-message {
+  display: none;
+}
+
+.fc .fc-list {
+  border-color: transparent;
+}
+
+.fc .fc-scrollgrid {
+  border-color: transparent;
+}
+
+.fc .fc-scrollgrid-section-header > th {
+  border-color: transparent;
+}
+
+.fc .fc-scrollgrid-section-body > td {
+  border-color: transparent;
+}
+
+.fc .fc-col-header-cell:first-of-type {
+  border-left-color: transparent;
+}
+
+.fc .fc-col-header-cell:last-of-type {
+  border-right-color: transparent;
+}
+
+.fc .fc-col-header-cell-cushion {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  line-height: 2.5;
+  padding: 8px;
+  text-transform: uppercase;
+}
+
+.fc .fc-daygrid-day-frame {
+  padding: 12px;
+}
+
+.fc .fc-day-other .fc-daygrid-day-top {
+  color: var(--mui-palette-text-secondary);
+}
+
+.fc .fc-event {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+/* Variables */
+:root {
+  --fontSize-xs: 0.75rem;
+  --fontSize-sm: 0.875rem;
+  --fontSize-md: 1rem;
+  --fontSize-lg: 1.125rem;
+  --fontSize-xl: 1.25rem;
+  --fontSize-2xl: 1.5rem;
+
+  --icon-fontSize-sm: 1rem;
+  --icon-fontSize-md: 1.25rem;
+  --icon-fontSize-lg: 1.5rem;
+
+  /* Remember to keep in sync with theme breakpoints */
+  --maxWidth-xs: 0;
+  --maxWidth-sm: 600px;
+  --maxWidth-md: 900px;
+  --maxWidth-lg: 1200px;
+  --maxWidth-xl: 1440px;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--mui-palette-primary-main);
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
